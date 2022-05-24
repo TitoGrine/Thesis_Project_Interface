@@ -1,0 +1,59 @@
+@import './variables.scss';
+
+.card {
+    flex-basis: 40%;
+    border-radius: $radius;
+    box-shadow: $box-shadow;
+    min-height: 80px;
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.search-card {
+    h2 {
+        font-size: 18px;
+        text-align: center;
+        font-weight: 400;
+        margin: 0 auto 30px auto;
+        padding-bottom: 10px;
+        width: 90%;
+        border-bottom: solid 1px $primaryColor;
+    }
+
+    .search-card-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+    
+        .options {
+            text-align: right;
+    
+            a {
+                color: $primaryColor;
+                margin-right: 20px;
+                font-size: 18px;
+            }
+    
+            button {
+                color: $primaryColor;
+                margin: 0;
+                padding: 0;
+                background-color: $background;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+            }
+        }
+    }
+}

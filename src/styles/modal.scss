@@ -1,0 +1,91 @@
+@import './variables.scss';
+
+.modal {
+    z-index: 5;
+    position: absolute;
+    padding: 30px;
+    border-radius: 5px;
+  
+    color: $background;
+    background-color: $text;
+  
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+
+    &.search-config-modal {
+        height: 80vh;
+        width: 60vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        h2 {
+            text-transform: uppercase;
+        
+            strong {
+                text-transform: lowercase;
+            }
+        }
+
+        .panels {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+        
+            p {
+                margin: 0;
+                font-weight: 300;
+                
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+
+                strong {
+                    font-weight: 500;
+                }
+            }
+
+            .panel[class$="-config"] {
+                padding: 20px 0;
+
+                &:first-child {
+                    padding-top: 0;
+                }
+
+                &:last-child {
+                    padding-bottom: 0;
+                }
+            }
+
+            .panel[class$="-config"]:not(:last-child) {
+                border-bottom: 1px solid $background;
+            }
+        }
+    }
+
+
+    .close-modal-button {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 20px;
+
+        cursor: pointer;
+    }
+}
+
+.modal-background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    z-index: 4;
+
+    background-color: $background;
+    filter: blur(20px) opacity(0.8);
+}
