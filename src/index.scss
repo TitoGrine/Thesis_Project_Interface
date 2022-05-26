@@ -23,7 +23,7 @@ a {
   &.original-link {
     display: inline-block;
     vertical-align:bottom;
-    width: 50%;
+    max-width: 50%;
   }
 
   &:hover {

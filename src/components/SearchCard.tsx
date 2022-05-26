@@ -24,22 +24,24 @@ function SearchCard({ id, config }: SearchConfigType) {
 	}
 
 	return (
-		<div className="search-card card">
-			<h2>
-				Search <strong>{id}</strong>
-			</h2>
-			<div className="search-card-content">
-				<p>
-					Date: <strong>{formatDate(timestamp)}</strong>
-				</p>
-				<section className="options">
-					<Link to={`${id}/profiles`}>
-						<FontAwesomeIcon icon={faMagnifyingGlass} />
-					</Link>
-					<button onClick={openConfig}>
-						<FontAwesomeIcon icon={faFileLines} />
-					</button>
-				</section>
+		<>
+			<div className="search-card card">
+				<h2>
+					Search <strong>{id}</strong>
+				</h2>
+				<div className="search-card-content">
+					<p>
+						Date: <strong>{formatDate(timestamp)}</strong>
+					</p>
+					<section className="options">
+						<Link to={`${id}/profiles`}>
+							<FontAwesomeIcon icon={faMagnifyingGlass} />
+						</Link>
+						<button onClick={openConfig}>
+							<FontAwesomeIcon icon={faFileLines} />
+						</button>
+					</section>
+				</div>
 			</div>
 			{showConfig && (
 				<SearchConfig
@@ -50,7 +52,7 @@ function SearchCard({ id, config }: SearchConfigType) {
 					close={closeConfig}
 				/>
 			)}
-		</div>
+		</>
 	)
 }
 

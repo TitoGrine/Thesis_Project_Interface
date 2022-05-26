@@ -19,31 +19,33 @@ function LinkCard(props: LinkInfoType) {
 	}
 
 	return (
-		<div className="link-card card">
-			<h2>
-				<strong className="original-link">{original_link}</strong>
-			</h2>
-			<div className="link-card-content">
-				<p>
-					Score: <strong>{score}</strong>
-				</p>
-				<section className="options">
-					<button onClick={openInfo}>
-						<FontAwesomeIcon icon={faFileLines} />
-					</button>
-				</section>
-			</div>
-			{is_link_tree && (
-				<div className="link-tree-icon tooltip">
-					<FontAwesomeIcon icon={faTree} />
-					<div className="top">
-						<p>This is a "link-tree" website.</p>
-						<i></i>
-					</div>
+		<>
+			<div className="link-card card">
+				<h2>
+					<strong className="original-link">{original_link}</strong>
+				</h2>
+				<div className="link-card-content">
+					<p>
+						Score: <strong>{score}</strong>
+					</p>
+					<section className="options">
+						<button onClick={openInfo}>
+							<FontAwesomeIcon icon={faFileLines} />
+						</button>
+					</section>
 				</div>
-			)}
+				{is_link_tree && (
+					<div className="link-tree-icon tooltip">
+						<FontAwesomeIcon icon={faTree} />
+						<div className="top">
+							<p>This is a "link-tree" website.</p>
+							<i></i>
+						</div>
+					</div>
+				)}
+			</div>
 			{showLinkInfo && <LinkInfo info={props} close={closeInfo}></LinkInfo>}
-		</div>
+		</>
 	)
 }
 

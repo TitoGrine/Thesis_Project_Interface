@@ -7,7 +7,7 @@ import { faFileLines } from "@fortawesome/free-solid-svg-icons"
 import ProfileResult from "./ProfileResult"
 
 function SearchCard(props: ProfileResultType) {
-	const { username, score, processed_links } = props
+	const { id, username, score, processed_links } = props
 	const [showResult, setShowResult] = useState<Boolean>(false)
 
 	const openResultModal = () => {
@@ -21,25 +21,30 @@ function SearchCard(props: ProfileResultType) {
 	}
 
 	return (
-		<div className="profile-card card">
-			<h2>
-				<strong>{username}</strong>
-			</h2>
-			<div className="profile-card-content">
-				<p>
-					Score: <strong>{score}</strong>
-				</p>
-				<p>
-					Related links: <strong>{processed_links.length}</strong>
-				</p>
-				<section className="options">
-					<button onClick={openResultModal}>
-						<FontAwesomeIcon icon={faFileLines} />
-					</button>
-				</section>
+		<>
+			<div className="profile-card card">
+				<h2>
+					<strong>{username}</strong>
+				</h2>
+				<div className="profile-card-content">
+					<p>
+						Score: <strong>{score}</strong>
+					</p>
+					<p>
+						Related links:{" "}
+						<strong>
+							<Link to={`${id}/links`}>{processed_links.length}</Link>
+						</strong>
+					</p>
+					<section className="options">
+						<button onClick={openResultModal}>
+							<FontAwesomeIcon icon={faFileLines} />
+						</button>
+					</section>
+				</div>
 			</div>
 			{showResult && <ProfileResult result={props} close={closeResultModal} />}
-		</div>
+		</>
 	)
 }
 

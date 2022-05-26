@@ -2,7 +2,7 @@
 
 .modal {
     z-index: 5;
-    position: absolute;
+    position: fixed;
     padding: 30px;
     border-radius: 5px;
   
@@ -14,20 +14,27 @@
     flex-wrap: nowrap;
     overflow-y: auto;
 
+    h2 {
+        font-size: 18px;
+        text-align: center;
+        font-weight: 400;
+        margin: 0 auto 30px auto;
+        padding-bottom: 10px;
+        width: 90%;
+        border-bottom: solid 1px $primaryColor;
+        text-transform: uppercase;
+
+        strong {
+            text-transform: none;
+        }
+    }
+
     &.search-config-modal {
         height: 80vh;
         width: 60vw;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
-        h2 {
-            text-transform: uppercase;
-        
-            strong {
-                text-transform: none;
-            }
-        }
 
         .panels {
             display: flex;
@@ -71,14 +78,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
-        h2 {
-            text-transform: uppercase;
-        
-            strong {
-                text-transform: none;
-            }
-        }
 
         .panel {
             display: flex;
@@ -145,14 +144,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-
-        h2 {
-            text-transform: uppercase;
-        
-            strong {
-                text-transform: none;
-            }
-        }
 
         .panel {
             display: flex;
@@ -240,19 +231,17 @@
 
                 
                 .thumbs-wrapper {
-                    box-sizing: border-box;
-
                     .thumbs {
                         padding: 0;
                         margin: auto;
-                        height: 80px;
-                        box-sizing: border-box;
+                        height: 100px;
     
                         .thumb {
                             top: 0;
                             border: none;
-                            margin: -42px 4px;
+                            margin: auto 4px;
                             overflow-y: visible;
+                            vertical-align: top;
                             vertical-align: middle;
     
                             &.selected {
@@ -265,7 +254,6 @@
         }
     }
 
-
     .close-modal-button {
         position: fixed;
         top: 15px;
@@ -277,7 +265,7 @@
 }
 
 .modal-background-blur {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
