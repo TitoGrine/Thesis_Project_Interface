@@ -238,16 +238,26 @@
                     }
                 }
 
-                .thumbs {
-                    padding: 0;
-                    text-align: center;
+                
+                .thumbs-wrapper {
+                    box-sizing: border-box;
 
-
-                    .thumb {
-                        border: none;
-                        
-                        &.selected {
-                            border: 2px solid $primaryColor;
+                    .thumbs {
+                        padding: 0;
+                        margin: auto;
+                        height: 80px;
+                        box-sizing: border-box;
+    
+                        .thumb {
+                            top: 0;
+                            border: none;
+                            margin: -42px 4px;
+                            overflow-y: visible;
+                            vertical-align: middle;
+    
+                            &.selected {
+                                border: 2px solid $primaryColor;
+                            }
                         }
                     }
                 }

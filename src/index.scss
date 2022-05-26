@@ -42,3 +42,54 @@ a {
 ul.double-list {
   columns: 20vw 3;
 }
+
+.tooltip {
+  display:inline-block;
+  position:relative;
+  text-align:left;
+}
+
+.tooltip .top {
+  min-width: 200px; 
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  padding: 5px 10px;
+  color: $background;
+  background-color: $text;
+  font-weight: normal;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 999;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  box-shadow:0 1px 8px transparent;
+  display: none;
+}
+
+.tooltip:hover .top {
+  display:block;
+}
+
+.tooltip .top i {
+  position:absolute;
+  top:100%;
+  left:50%;
+  margin-left:-12px;
+  width:24px;
+  height:12px;
+  overflow:hidden;
+}
+
+.tooltip .top i::after {
+  content:'';
+  position:absolute;
+  width:12px;
+  height:12px;
+  left:50%;
+  transform:translate(-50%,-50%) rotate(45deg);
+  background-color:#FFEEEE;
+  border:1px solid transparent;box-shadow:0 1px 8px transparent;
+}

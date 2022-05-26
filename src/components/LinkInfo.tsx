@@ -1,7 +1,7 @@
 import React from "react"
 import { LinkInfo as LinkInfoType, Entities } from "../types/ProfileResult"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faXmark, faTree } from "@fortawesome/free-solid-svg-icons"
+import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { Carousel } from "react-responsive-carousel"
 
 type props = {
@@ -35,7 +35,6 @@ function LinkInfo({ info, close }: props) {
 		original_link,
 		name,
 		title,
-		is_link_tree,
 		description,
 		keywords,
 		internal_links,
@@ -56,8 +55,8 @@ function LinkInfo({ info, close }: props) {
 			<ul className="entities-panel">
 				{entityKeys.map((entity) => (
 					<li>
-						<span className="entity-name">{entityNameMapping[entity]}</span>:{" "}
-						<strong>{entities[entity]?.sort().join(", ") || "-"}</strong>
+						<strong className="entity-name">{entityNameMapping[entity]}</strong>
+						: {entities[entity]?.sort().join(", ") || "-"}
 					</li>
 				))}
 			</ul>
@@ -181,7 +180,6 @@ function LinkInfo({ info, close }: props) {
 
 		return (
 			<Carousel
-				className="carousel"
 				showStatus={false}
 				showArrows={true}
 				showIndicators={false}
@@ -216,7 +214,7 @@ function LinkInfo({ info, close }: props) {
 				</h2>
 				<div className="panel">{getPanelInformation()}</div>
 				<div className="image-panel">
-					<p>Collected Images:</p> {getImageCarousel()}
+					<p>{`Collected Images (${images.length}):`}</p> {getImageCarousel()}
 				</div>
 				<div className="close-modal-button">
 					<FontAwesomeIcon icon={faXmark} onClick={close} />
@@ -227,11 +225,6 @@ function LinkInfo({ info, close }: props) {
 				onClick={close}
 				data-active="true"
 			/>
-			{!is_link_tree && (
-				<div className="link-tree-icon">
-					<FontAwesomeIcon icon={faTree} />
-				</div>
-			)}
 		</>
 	)
 }

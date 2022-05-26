@@ -7,6 +7,7 @@
     min-height: 80px;
     max-width: 40%;
     padding: 25px;
+    position: relative;
 
     display: flex;
     flex-direction: column;
@@ -60,9 +61,10 @@
 
     .link-tree-icon {
         position: absolute;
-        top: 5px;
-        right: 10px;
-        font-size: 10px;
+        top: 15px;
+        right: 15px;
+        font-size: 14px;
         color: $text;
+        cursor: help;
     }
 }

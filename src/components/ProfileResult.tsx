@@ -1,8 +1,9 @@
-import React from "react"
+import { useState, useCallback, useEffect } from "react"
 import { ProfileResult as ProfileResultType } from "../types/ProfileResult"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
+import { getWikiPage } from "../utils/wiki"
 
 type props = {
 	result: ProfileResultType
@@ -10,7 +11,41 @@ type props = {
 }
 
 function ProfileResult({ result, close }: props) {
-	const { username } = result
+	const { username, entities } = result
+	const [profileEntities, setProfileEntities] = useState<
+		Array<string | JSX.Element>
+	>([])
+
+	const getProfileEntities = useCallback(async () => {
+		const processedEntities = await Promise.all(
+			entities.map((entity) => getEntity(entity))
+		)
+
+		setProfileEntities(
+			processedEntities.map((entity) => (
+				<li>
+					<strong>{entity}</strong>
+				</li>
+			))
+		)
+	}, [entities])
+
+	useEffect(() => {
+		getProfileEntities()
+	}, [getProfileEntities])
+
+	const getEntity = async (entity: string) => {
+		try {
+			const entityPage = (await getWikiPage(entity)).url()
+			return (
+				<a href={entityPage} target="_blank" rel="noopener noreferrer">
+					{entity}
+				</a>
+			)
+		} catch (e) {
+			return entity
+		}
+	}
 
 	const getPanelInformation = () => {
 		const {
@@ -19,13 +54,10 @@ function ProfileResult({ result, close }: props) {
 			profile_image,
 			location,
 			description,
-			entities,
 			score,
 			processed_links,
 			unprocessed_links,
 		} = result
-
-		console.log(profile_image)
 
 		return (
 			<>
@@ -83,13 +115,7 @@ function ProfileResult({ result, close }: props) {
 					Tweet's Entities:{" "}
 					{entities.length > 0 ? (
 						<div>
-							<ul className="double-list">
-								{entities.map((entity) => (
-									<li>
-										<strong>{entity}</strong>
-									</li>
-								))}
-							</ul>
+							<ul className="double-list">{profileEntities}</ul>
 						</div>
 					) : (
 						<strong>-</strong>

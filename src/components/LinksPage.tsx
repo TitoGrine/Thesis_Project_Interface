@@ -13,7 +13,6 @@ function LinksPage() {
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data)
 				setProfile(data?.profile)
 			})
 	}, [search_id, profile_id])

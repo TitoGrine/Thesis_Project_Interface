@@ -2,10 +2,10 @@ import { useState } from "react"
 import LinkInfo from "./LinkInfo"
 import { LinkInfo as LinkInfoType } from "../types/ProfileResult"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileLines } from "@fortawesome/free-solid-svg-icons"
+import { faFileLines, faTree } from "@fortawesome/free-solid-svg-icons"
 
 function LinkCard(props: LinkInfoType) {
-	const { original_link, score } = props
+	const { original_link, score, is_link_tree } = props
 	const [showLinkInfo, setShowLinkInfo] = useState<Boolean>(false)
 
 	const openInfo = () => {
@@ -33,6 +33,15 @@ function LinkCard(props: LinkInfoType) {
 					</button>
 				</section>
 			</div>
+			{is_link_tree && (
+				<div className="link-tree-icon tooltip">
+					<FontAwesomeIcon icon={faTree} />
+					<div className="top">
+						<p>This is a "link-tree" website.</p>
+						<i></i>
+					</div>
+				</div>
+			)}
 			{showLinkInfo && <LinkInfo info={props} close={closeInfo}></LinkInfo>}
 		</div>
 	)
