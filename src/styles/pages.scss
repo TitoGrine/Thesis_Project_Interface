@@ -1,15 +1,6 @@
 @import './variables.scss';
 
-.searches {
-  margin: 75px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 50px;
-}
-
-.profiles {
+.searches, .profiles, .links {
   margin: 75px;
   display: flex;
   flex-direction: row;

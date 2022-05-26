@@ -40,14 +40,14 @@ export type LinkInfo = {
 	phone_numbers: Array<string>
 	score: string
 	images: Array<ImageInfo>
-	entities: Array<Entities>
+	entities: Entities
 }
 
 export type ProfileResult = {
 	id: number
 	username: string
 	name: string
-	profile_img: string
+	profile_image: string
 	location: string
 	description: Array<string>
 	entities: Array<string>

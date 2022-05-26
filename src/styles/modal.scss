@@ -25,7 +25,7 @@
             text-transform: uppercase;
         
             strong {
-                text-transform: lowercase;
+                text-transform: none;
             }
         }
 
@@ -65,9 +65,199 @@
         }
     }
 
+    &.profile-result-modal {
+        height: 80vh;
+        width: 60vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        h2 {
+            text-transform: uppercase;
+        
+            strong {
+                text-transform: none;
+            }
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+
+            section {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                margin-bottom: 15px;
+
+                img {
+                    max-height: 110px;
+                    margin: auto 50px;
+                    border: 2px solid $primaryColor;
+                    border-radius: 50%;
+                }
+            }
+
+            p {
+                margin: 0;
+                font-weight: 300;
+                
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+
+                strong {
+                    font-weight: 500;
+                }
+                
+                div {
+                    margin-top: 10px;
+                    max-height: 250px;
+                    overflow-y: auto;
+                    border-radius: $radius;
+    
+                    ul {
+                        margin: 0;
+                        font-weight: 300;
+                        background-color: $background;
+                        color: $text;
+                        padding: 10px 20px;
+                        list-style: square inside;
+                        
+                        li {
+                            margin-bottom: 5px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+
+    &.link-info-modal {
+        height: 80vh;
+        width: 60vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        h2 {
+            text-transform: uppercase;
+        
+            strong {
+                text-transform: none;
+            }
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+
+            p {
+                margin: 0;
+                font-weight: 300;
+                
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+
+                strong {
+                    font-weight: 500;
+                }
+            }
+
+            ul {
+                margin: 0;
+                margin-top: 10px;
+                font-weight: 300;
+                max-height: 200px;
+                overflow-y: auto;
+                background-color: $background;
+                color: $text;
+                border-radius: $radius;
+                padding: 10px 30px;
+
+                li {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        .image-panel {
+            padding: 0 20px;
+
+            p {
+                font-weight: 300;
+            }
+
+            .carousel-root {
+                justify-self: center;
+                align-self: flex-start;
+                height: auto;
+                margin: 0 auto;
+                max-width: 100%;
+                grid-area: image;
+                box-sizing: border-box;
+                flex: 1;
+    
+                div {
+                    max-height: 18vh;
+                    max-width: 100%;
+                    width: auto;
+                }
+    
+                .slide {
+                    display: flex;
+                    max-width: 100%;
+                    justify-content: center;
+    
+                    img {
+                        max-height: 100%;
+                        max-width: 100%;
+                        width: auto;
+                    }
+                }
+
+                button.control-arrow {
+                    background-color: transparent !important;
+                    opacity: 1 !important;
+
+                    &::before {
+                        border-left-color: $background !important;
+                        border-right-color: $background !important;
+                    }
+
+                    &:hover {
+                        background-color: transparent !important;
+                    }
+                }
+
+                .thumbs {
+                    padding: 0;
+                    text-align: center;
+
+
+                    .thumb {
+                        border: none;
+                        
+                        &.selected {
+                            border: 2px solid $primaryColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     .close-modal-button {
-        position: absolute;
+        position: fixed;
         top: 15px;
         right: 20px;
         font-size: 20px;

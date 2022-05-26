@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { ProfileResult } from "../types/ProfileResult"
+import { ProfileResult as ProfileResultType } from "../types/ProfileResult"
 import { formatDate } from "../utils/date"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFileLines } from "@fortawesome/free-solid-svg-icons"
+import ProfileResult from "./ProfileResult"
 
-function SearchCard({ username, score, ...props }: ProfileResult) {
+function SearchCard(props: ProfileResultType) {
+	const { username, score, processed_links } = props
 	const [showResult, setShowResult] = useState<Boolean>(false)
 
 	const openResultModal = () => {
@@ -19,13 +21,16 @@ function SearchCard({ username, score, ...props }: ProfileResult) {
 	}
 
 	return (
-		<div className="search-card card">
+		<div className="profile-card card">
 			<h2>
 				<strong>{username}</strong>
 			</h2>
-			<div className="search-card-content">
+			<div className="profile-card-content">
 				<p>
 					Score: <strong>{score}</strong>
+				</p>
+				<p>
+					Related links: <strong>{processed_links.length}</strong>
 				</p>
 				<section className="options">
 					<button onClick={openResultModal}>
@@ -33,6 +38,7 @@ function SearchCard({ username, score, ...props }: ProfileResult) {
 					</button>
 				</section>
 			</div>
+			{showResult && <ProfileResult result={props} close={closeResultModal} />}
 		</div>
 	)
 }

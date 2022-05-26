@@ -5,6 +5,7 @@
     border-radius: $radius;
     box-shadow: $box-shadow;
     min-height: 80px;
+    max-width: 40%;
     padding: 25px;
 
     display: flex;
@@ -12,7 +13,7 @@
     justify-content: space-between;
 }
 
-.search-card {
+.search-card, .profile-card, .link-card {
     h2 {
         font-size: 18px;
         text-align: center;
@@ -23,7 +24,7 @@
         border-bottom: solid 1px $primaryColor;
     }
 
-    .search-card-content {
+    .search-card-content, .profile-card-content, .link-card-content {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -55,5 +56,13 @@
                 font-size: 18px;
             }
         }
+    }
+
+    .link-tree-icon {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: 10px;
+        color: $text;
     }
 }

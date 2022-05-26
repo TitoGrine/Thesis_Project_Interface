@@ -33,7 +33,7 @@ function SearchCard({ id, config }: SearchConfigType) {
 					Date: <strong>{formatDate(timestamp)}</strong>
 				</p>
 				<section className="options">
-					<Link to={`${id}`}>
+					<Link to={`${id}/profiles`}>
 						<FontAwesomeIcon icon={faMagnifyingGlass} />
 					</Link>
 					<button onClick={openConfig}>
