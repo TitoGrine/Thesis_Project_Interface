@@ -13,11 +13,23 @@ function SearchPage() {
 
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_API_HOST}/searches/${search_id}`)
-			.then((response) => response.json())
+			.then((response) => {
+				if (response.status >= 400) {
+					throw new Error()
+				}
+
+				return response.json()
+			})
 			.then((data) => setProfiles(data?.profiles))
+			.catch(() => setProfiles([]))
 	}, [search_id])
 
 	const getProfileCards = () => {
+		if (profiles?.length === 0)
+			return (
+				<div className="no-results">This search returned no profiles...</div>
+			)
+
 		return profiles
 			?.sort(
 				({ score: score1 }, { score: score2 }) =>

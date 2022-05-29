@@ -1,0 +1,161 @@
+@import './variables.scss';
+
+.search-form {
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid $text;
+    border-radius: $radius;
+    padding: 30px;
+
+    background-color: $text;
+    color: $background;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    overflow-y: auto;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        h2 {
+            margin: 40px 0 0 0;
+            font-size: 20px;
+            font-weight: 500;
+            padding-bottom: 5px;
+
+            border-bottom: 1px solid $primaryColor;
+
+        }
+        
+        &:first-child  h2{
+            margin-top: 0;
+        }
+
+        span {
+            padding: 15px 0 0 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+
+            label {
+                display: flex;
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                font-size: 14px;
+                font-weight: 400;
+                margin: auto;
+                
+                input {
+                    margin-left: 10px;
+                    height: 25px;
+                    border: none;
+                    border-radius: calc($radius / 2);
+                    background-color: $background;
+                    color: $text;
+                    padding: 1px 6px;
+    
+                    &:not([type="number"]):not([type="datetime-local"]) {
+                        flex-grow: 1;
+                    }
+        
+                    &[type="number"] {
+                        width: 100px;
+                    }
+    
+                    &:focus {
+                        outline: 0 none;
+                    }
+                }
+            }
+
+            .error {
+                width: 100%;
+                margin-top: 5px;
+                font-size: 12px;
+                font-weight: 300;
+                color: $alertColor;
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        div[class*="-input"] {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            span {
+                width: 50%;
+            }
+        }
+
+        .entities-selection {
+            margin-top: 15px;
+            
+            label {
+                font-size: 14px;
+                font-weight: 400;
+                margin: 20px 0;
+            }
+
+            ul {
+                columns: 10vw 3;
+                padding: 0;
+                margin: 10px auto;
+    
+                list-style: none;
+    
+                li {
+                    margin: 0px auto 10px auto;
+
+                    label {
+                        font-weight: 500;
+                        padding-left: 30px;
+                    }
+                }
+            }
+        }
+
+    }
+    
+    button {
+        margin: 15px auto 0 auto;
+        width: 150px;
+        min-height: 40px;
+        border: none;
+        border-radius: calc($radius / 2);
+        background-color: $background;
+        color: $primaryColor;
+
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.5s;
+
+
+        &:hover {
+            color: $background;
+            background-color: $primaryColor;
+            transition: all 0.5s;
+        }
+    }
+}

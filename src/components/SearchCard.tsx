@@ -7,10 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faMagnifyingGlass,
 	faFileLines,
+	faGears,
+	faBug,
 } from "@fortawesome/free-solid-svg-icons"
 
 function SearchCard({ id, config }: SearchConfigType) {
-	const { searching, discovery, extraction, timestamp } = config
+	const { searching, discovery, extraction, timestamp, state, error } = config
 	const [showConfig, setShowConfig] = useState<Boolean>(false)
 
 	const openConfig = () => {
@@ -23,6 +25,40 @@ function SearchCard({ id, config }: SearchConfigType) {
 		document.body.style.overflowY = "auto"
 	}
 
+	const getCardOptions = () => {
+		switch (state) {
+			case "running":
+				return (
+					<div className="running-icon tooltip">
+						<FontAwesomeIcon icon={faGears} />
+						<div className="top">
+							<p>The search is running.</p>
+							<i></i>
+						</div>
+					</div>
+				)
+			case "error":
+				return (
+					<div className="error-icon tooltip">
+						<FontAwesomeIcon icon={faBug} />
+						<div className="top">
+							<p>Error occurred in search:</p>
+							<p>{error || "No error message"}</p>
+							<i></i>
+						</div>
+					</div>
+				)
+			case "completed":
+				return (
+					<Link to={`${id}/profiles`}>
+						<FontAwesomeIcon icon={faMagnifyingGlass} />
+					</Link>
+				)
+			default:
+				return <></>
+		}
+	}
+
 	return (
 		<>
 			<div className="search-card card">
@@ -31,12 +67,11 @@ function SearchCard({ id, config }: SearchConfigType) {
 				</h2>
 				<div className="search-card-content">
 					<p>
-						Date: <strong>{formatDate(timestamp)}</strong>
+						Date:{" "}
+						<strong>{formatDate(timestamp, true, "Europe/Lisbon")}</strong>
 					</p>
 					<section className="options">
-						<Link to={`${id}/profiles`}>
-							<FontAwesomeIcon icon={faMagnifyingGlass} />
-						</Link>
+						{getCardOptions()}
 						<button onClick={openConfig}>
 							<FontAwesomeIcon icon={faFileLines} />
 						</button>

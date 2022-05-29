@@ -53,10 +53,11 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 				</p>
 				<p>
 					Start Date:{" "}
-					<strong>{!!start_time ? formatDate(start_time) : "-"}</strong>
+					<strong>{!!start_time ? formatDate(start_time, false) : "-"}</strong>
 				</p>
 				<p>
-					End Date: <strong>{!!end_time ? formatDate(end_time) : "-"}</strong>
+					End Date:{" "}
+					<strong>{!!end_time ? formatDate(end_time, false) : "-"}</strong>
 				</p>
 			</>
 		)

@@ -7,4 +7,9 @@
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 50px;
+
+  .no-results {
+    font-size: 24px;
+    font-weight: 300;
+  }
 }

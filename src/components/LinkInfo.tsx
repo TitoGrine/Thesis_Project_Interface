@@ -3,31 +3,11 @@ import { LinkInfo as LinkInfoType, Entities } from "../types/ProfileResult"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { Carousel } from "react-responsive-carousel"
+import { entityNameMapping } from "../utils/constants"
 
 type props = {
 	info: LinkInfoType
 	close: () => void
-}
-
-const entityNameMapping = {
-	person: "People",
-	norp: "Groups",
-	fac: "Structures",
-	organization: "Organizations",
-	location: "Locations",
-	places: "Places",
-	product: "Products",
-	event: "Events",
-	art: "Art",
-	law: "Law",
-	language: "Languages",
-	date: "Dates",
-	time: "Times",
-	percent: "Percentages",
-	money: "Money",
-	quantity: "Quantities",
-	ordinal: "Ordinal Numbers",
-	cardinal: "Cardinal Numbers",
 }
 
 function LinkInfo({ info, close }: props) {
@@ -176,7 +156,7 @@ function LinkInfo({ info, close }: props) {
 	}
 
 	const getImageCarousel = () => {
-		if (images.length == 0) return <></>
+		if (images.length === 0) return <></>
 
 		return (
 			<Carousel

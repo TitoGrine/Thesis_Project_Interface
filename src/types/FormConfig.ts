@@ -1,4 +1,4 @@
-export type Entities = {
+export class Entities {
 	person?: boolean
 	norp?: boolean
 	fac?: boolean
@@ -19,19 +19,21 @@ export type Entities = {
 	cardinal?: boolean
 }
 
+export type EntitiesArray = Array<keyof Entities>
+
 export type Searching = {
 	users: number
-	keywords: Array<string>
-	hashtags: Array<string>
-	exclude?: Array<string>
-	countries?: Array<string>
-	languages?: Array<string>
+	keywords: string
+	hashtags: string
+	exclude?: string
+	countries?: string
+	languages?: string
 	start_time?: string
 	end_time?: string
 }
 
 export type Discovery = {
-	keywords: Array<string>
+	keywords: string
 	tweets_per_user: number
 }
 
@@ -40,14 +42,8 @@ export type Extraction = {
 	entities: Entities
 }
 
-export type Configuration = {
+export type FormConfiguration = {
 	searching: Searching
 	discovery: Discovery
 	extraction: Extraction
-	timestamp: string
-}
-
-export type SearchConfig = {
-	id: string
-	config: Configuration
 }

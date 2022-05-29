@@ -67,4 +67,28 @@
         color: $text;
         cursor: help;
     }
+
+    div[class*="-icon"] {
+        font-size: 18px;
+        margin-right: 20px;
+        color: $primaryColor;
+        cursor: help;
+    
+        &.error-icon {
+            color: $alertColor;
+            
+            .top {
+                width: 100%;
+            
+                p {
+                    text-align: left !important;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+
+
 }

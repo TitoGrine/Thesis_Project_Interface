@@ -82,7 +82,7 @@ function ProfileResult({ result, close }: props) {
 					/>
 				</section>
 				<p>
-					Description: <strong>{description.join(", ")}</strong>
+					Description: <strong>{description}</strong>
 				</p>
 
 				<p>

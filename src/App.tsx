@@ -1,16 +1,19 @@
+import "./styles/form.scss"
 import "./styles/pages.scss"
 import "./styles/cards.scss"
 import "./styles/modal.scss"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import Searches from "./components/Searches"
-import SearchPage from "./components/SearchPage"
 import LinksPage from "./components/LinksPage"
+import SearchPage from "./components/SearchPage"
+import SearchForm from "./components/SearchForm"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 function App() {
 	return (
 		<Router>
 			<Routes>
+				<Route path="/" element={<SearchForm />} />
 				<Route path="/searches" element={<Searches />} />
 				<Route path="/searches/:search_id/profiles" element={<SearchPage />} />
 				<Route
