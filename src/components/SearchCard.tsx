@@ -72,7 +72,7 @@ function SearchCard({ id, config }: SearchConfigType) {
 					</p>
 					<section className="options">
 						{getCardOptions()}
-						<button onClick={openConfig}>
+						<button className="icon-button" onClick={openConfig}>
 							<FontAwesomeIcon icon={faFileLines} />
 						</button>
 					</section>

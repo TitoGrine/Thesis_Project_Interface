@@ -7,13 +7,19 @@ import Searches from "./components/Searches"
 import LinksPage from "./components/LinksPage"
 import SearchPage from "./components/SearchPage"
 import SearchForm from "./components/SearchForm"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Navigate,
+} from "react-router-dom"
 
 function App() {
 	return (
 		<Router>
 			<Routes>
 				<Route path="/" element={<SearchForm />} />
+				<Route path="/search" element={<Navigate to="/" replace />} />
 				<Route path="/searches" element={<Searches />} />
 				<Route path="/searches/:search_id/profiles" element={<SearchPage />} />
 				<Route

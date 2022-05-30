@@ -3,7 +3,6 @@ export const formatDate = (
 	UTC: boolean,
 	timeZone: string = "UTC"
 ): string => {
-	console.log(rawDate)
 	const timestamp = new Date(`${rawDate}${UTC ? "Z" : ""}`)
 	const options = {
 		day: "2-digit" as const,

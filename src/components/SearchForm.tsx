@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { FormConfiguration, Entities, EntitiesArray } from "../types/FormConfig"
 import { Configuration } from "../types/SearchConfig"
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik"
@@ -8,11 +8,19 @@ import countries from "i18n-iso-countries"
 // @ts-ignore
 import tags from "language-tags"
 
+interface LocationState {
+	startConfig?: FormConfiguration
+}
+
 function SearchForm() {
 	const navigate = useNavigate()
+	const location = useLocation()
 	const entityKeys: EntitiesArray = Object.keys(new Entities()) as EntitiesArray
+	const { startConfig } = (
+		location.state ? location.state : {}
+	) as LocationState
 
-	const initialValues = {
+	const initialValues = startConfig || {
 		searching: {
 			users: 100,
 			keywords: "",

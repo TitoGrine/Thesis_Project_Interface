@@ -43,6 +43,29 @@ ul.double-list {
   columns: 20vw 3;
 }
 
+button:not([class^="icon-"]) {
+  margin: 15px auto 0 auto;
+  width: 150px;
+  min-height: 40px;
+  border: none;
+  border-radius: calc($radius / 2);
+  background-color: $background;
+  color: $primaryColor;
+
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.5s;
+
+
+  &:hover {
+      color: $background;
+      background-color: $primaryColor;
+      transition: all 0.5s;
+  }
+}
+
 .tooltip {
   display:inline-block;
   position:relative;

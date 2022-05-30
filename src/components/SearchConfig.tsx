@@ -1,4 +1,4 @@
-import React from "react"
+import { useNavigate } from "react-router-dom"
 import { formatDate } from "../utils/date"
 import {
 	Searching,
@@ -18,6 +18,41 @@ type props = {
 }
 
 function SearchConfig({ id, searching, discovery, extraction, close }: props) {
+	const navigate = useNavigate()
+
+	const reuseConfig = () => {
+		let searchConfig: any = {
+			searching: searching,
+			discovery: discovery,
+			extraction: extraction,
+		}
+
+		if (searching.keywords.length > 0)
+			searchConfig.searching.keywords = searching.keywords.join(", ")
+
+		if (searching.hashtags.length > 0)
+			searchConfig.searching.hashtags = searching.hashtags.join(", ")
+
+		if (searching.exclude && searching.exclude.length > 0)
+			searchConfig.searching.exclude = searching.exclude.join(", ")
+
+		if (searching.countries && searching.countries.length > 0)
+			searchConfig.searching.countries = searching.countries.join(", ")
+
+		if (searching.languages && searching.languages.length > 0)
+			searchConfig.searching.languages = searching.languages.join(", ")
+
+		if (discovery.keywords.length > 0)
+			searchConfig.discovery.keywords = discovery.keywords.join(", ")
+
+		navigate("/", {
+			replace: true,
+			state: {
+				startConfig: searchConfig,
+			},
+		})
+	}
+
 	const getSearchingPanel = () => {
 		const {
 			users,
@@ -109,6 +144,9 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 					<div className="panel discovery-config">{getDiscoveryPanel()}</div>
 					<div className="panel extraction-config">{getExtractionPanel()}</div>
 				</div>
+				<button className="reuse-config-button" onClick={reuseConfig}>
+					Reuse Configuration
+				</button>
 				<div className="close-modal-button">
 					<FontAwesomeIcon icon={faXmark} onClick={close} />
 				</div>
