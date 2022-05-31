@@ -254,6 +254,37 @@
         }
     }
 
+    &.tweets-test-modal {
+        height: 50vh;
+        width: 50vw;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .tweet {
+            padding: 15px;
+            background-color: $background;
+            color: $text;
+            border-radius: $radius;
+            margin-bottom: 15px;
+        
+            p {
+                margin: 0 0 10px 0;
+
+                &:first-child {
+                    a::before {
+                        content: "@";
+                    }
+                }
+
+                &:last-child {
+                    margin: 0;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
     .close-modal-button {
         position: fixed;
         top: 15px;

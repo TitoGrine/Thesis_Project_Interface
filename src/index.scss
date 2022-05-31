@@ -66,6 +66,30 @@ button:not([class^="icon-"]) {
   }
 }
 
+.navigation-switcher {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 40px;
+  min-height: 25px;
+
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 5px;
+
+  background-color: $background;
+  border-radius: calc(10 * $radius);
+  box-shadow: $box-shadow;
+  
+  a {
+    color: $text;
+  }
+}
+
 .tooltip {
   display:inline-block;
   position:relative;

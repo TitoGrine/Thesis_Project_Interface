@@ -42,6 +42,15 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 		if (searching.languages && searching.languages.length > 0)
 			searchConfig.searching.languages = searching.languages.join(", ")
 
+		if (searching.start_time)
+			searchConfig.searching.start_time = searching.start_time.replace(
+				":00Z",
+				""
+			)
+
+		if (searching.end_time)
+			searchConfig.searching.end_time = searching.end_time.replace(":00Z", "")
+
 		if (discovery.keywords.length > 0)
 			searchConfig.discovery.keywords = discovery.keywords.join(", ")
 

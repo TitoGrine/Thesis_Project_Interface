@@ -13,6 +13,7 @@ import {
 	Route,
 	Navigate,
 } from "react-router-dom"
+import Switcher from "./components/Switcher"
 
 function App() {
 	return (
@@ -27,6 +28,7 @@ function App() {
 					element={<LinksPage />}
 				/>
 			</Routes>
+			<Switcher />
 		</Router>
 	)
 }
