@@ -152,6 +152,27 @@
     min-height: 40px;
     max-height: 40px;
 
+    button {
+        padding: 0;
+        margin: auto 0;
+        width: 40px;
+        min-height: 40px !important;
+        max-height: 40px !important;
+        background-color: $primaryColor;
+        color: $background;
+        border-radius: calc(10 * $radius);
+
+        &:hover {
+            background-color: $alertColor;
+            color: $background;
+        }
+        
+        a {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
     label {
         position: relative;
         min-height: 40px;

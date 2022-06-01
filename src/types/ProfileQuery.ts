@@ -1,16 +1,16 @@
-export type QueryFields =
+export type ProfileQueryFields =
 	| "username"
 	| "name"
 	| "location"
 	| "description"
 	| "entities"
 
-export type QueryForm = {
+export type ProfileQueryForm = {
 	query: string
-	fields: Array<QueryFields>
+	fields: Array<ProfileQueryFields>
 }
 
-export type QueryRequest = {
+export type ProfileQueryRequest = {
 	q: string
 	fields?: string
 }

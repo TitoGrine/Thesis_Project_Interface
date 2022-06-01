@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { ProfileResult } from "../types/ProfileResult"
 import { useLocation, useParams, Navigate } from "react-router-dom"
 import ProfileCard from "./ProfileCard"
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik"
+import { Formik, Field, Form, FormikHelpers } from "formik"
 import {
-	QueryForm,
-	QueryFields,
+	ProfileQueryForm,
+	ProfileQueryFields,
 	fieldOptions,
-	QueryRequest,
-} from "../types/QueryForm"
+	ProfileQueryRequest,
+} from "../types/ProfileQuery"
 import MultiSelect from "./MultiSelect"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMagnifyingGlass, faClock } from "@fortawesome/free-solid-svg-icons"
+import {
+	faMagnifyingGlass,
+	faRotateLeft,
+} from "@fortawesome/free-solid-svg-icons"
 
 type props = {
 	search_id: string
@@ -21,7 +24,7 @@ function SearchPage() {
 	const { search_id } = useParams()
 	const [profiles, setProfiles] = useState<Array<ProfileResult>>()
 
-	useEffect(() => {
+	const getAllProfiles = useCallback(() => {
 		fetch(`${process.env.REACT_APP_API_HOST}/searches/${search_id}`)
 			.then((response) => {
 				if (response.status >= 400) {
@@ -34,7 +37,11 @@ function SearchPage() {
 			.catch(() => setProfiles([]))
 	}, [search_id])
 
-	const validateSearch = (values: QueryForm) => {
+	useEffect(() => {
+		getAllProfiles()
+	}, [getAllProfiles])
+
+	const validateSearch = (values: ProfileQueryForm) => {
 		const { query } = values
 
 		if (query.length === 0)
@@ -45,21 +52,21 @@ function SearchPage() {
 		return {}
 	}
 
-	const getQueryForm = () => {
+	const getProfileQueryForm = () => {
 		return (
 			<div>
 				<Formik
 					initialValues={{
 						query: "",
-						fields: [] as Array<QueryFields>,
+						fields: [] as Array<ProfileQueryFields>,
 					}}
 					validate={validateSearch}
 					onSubmit={(
-						values: QueryForm,
-						{ setSubmitting, resetForm }: FormikHelpers<QueryForm>
+						values: ProfileQueryForm,
+						{ setSubmitting, resetForm }: FormikHelpers<ProfileQueryForm>
 					) => {
 						const { query, fields } = values
-						let params: QueryRequest = {
+						let params: ProfileQueryRequest = {
 							q: query,
 						}
 
@@ -81,26 +88,37 @@ function SearchPage() {
 							.catch(() => setProfiles([]))
 					}}
 				>
-					<Form className="query-form">
-						<label>
-							<Field
-								id="query"
-								name="query"
-								placeHolder="Filter by keywords..."
-							/>
-							<button type="submit">
-								{" "}
-								<FontAwesomeIcon icon={faMagnifyingGlass} />
+					{({ submitForm, resetForm }) => (
+						<Form className="query-form">
+							<button
+								type="button"
+								onClick={() => {
+									resetForm()
+									getAllProfiles()
+								}}
+							>
+								<FontAwesomeIcon icon={faRotateLeft} />
 							</button>
-						</label>
-						<Field
-							className="custom-select"
-							name="fields"
-							options={fieldOptions}
-							component={MultiSelect}
-							placeholder="Select fields..."
-						/>
-					</Form>
+							<label>
+								<Field
+									id="query"
+									name="query"
+									placeHolder="Filter by keywords..."
+								/>
+								<button type="submit">
+									{" "}
+									<FontAwesomeIcon icon={faMagnifyingGlass} />
+								</button>
+							</label>
+							<Field
+								className="custom-select"
+								name="fields"
+								options={fieldOptions}
+								component={MultiSelect}
+								placeholder="Select fields..."
+							/>
+						</Form>
+					)}
 				</Formik>
 			</div>
 		)
@@ -122,7 +140,7 @@ function SearchPage() {
 
 	return (
 		<>
-			{getQueryForm()}
+			{getProfileQueryForm()}
 			<div className="profiles">{profiles && getProfileCards()}</div>
 		</>
 	)

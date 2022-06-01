@@ -94,52 +94,96 @@ button:not([class^="icon-"]) {
   display:inline-block;
   position:relative;
   text-align:left;
-}
 
-.tooltip .top {
-  min-width: 200px; 
-  top: -20px;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  padding: 5px 10px;
-  color: $background;
-  background-color: $text;
-  font-weight: normal;
-  font-size: 13px;
-  text-align: center;
-  border-radius: 8px;
-  position: absolute;
-  z-index: 999;
-  box-sizing: border-box;
-  border: 1px solid transparent;
-  box-shadow:0 1px 8px transparent;
-  display: none;
-}
+  .top {
+    min-width: 150px; 
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    padding: 5px 10px;
+    color: $background;
+    background-color: $text;
+    font-weight: normal;
+    font-size: 13px;
+    text-align: center;
+    border-radius: $radius;
+    position: absolute;
+    z-index: 999;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    box-shadow:0 1px 8px transparent;
+    display: none;
+  }
 
-.tooltip:hover .top {
-  display:block;
-}
+  .bottom {
+    min-width: 150px; 
+    top: 60px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 5px 10px;
+    color: $background;
+    background-color: $text;
+    font-weight: normal;
+    font-size: 13px;
+    text-align: center;
+    border-radius: $radius;
+    position: absolute;
+    z-index: 999;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    box-shadow:0 1px 8px transparent;
+    display: none;
+  }
 
-.tooltip .top i {
-  position:absolute;
-  top:100%;
-  left:50%;
-  margin-left:-12px;
-  width:24px;
-  height:12px;
-  overflow:hidden;
-}
+  &:hover {
+    .top, .bottom {
+      display:block;
+    }
+  }
 
-.tooltip .top i::after {
-  content:'';
-  position:absolute;
-  width:12px;
-  height:12px;
-  left:50%;
-  transform:translate(-50%,-50%) rotate(45deg);
-  background-color: $text;
-  border:1px solid transparent;
-  box-shadow:0 1px 8px transparent;
+  .top i {
+    position:absolute;
+    top:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+  }
+
+  .bottom i {
+    position:absolute;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
+    overflow:hidden;
+  }
+
+  .top i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+    background-color: $text;
+    border:1px solid transparent;
+    box-shadow:0 1px 8px transparent;
+  }
+
+  .bottom i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
+    background-color: $text;
+    border:1px solid transparent;
+    box-shadow:0 1px 8px transparent;
+  }
 }
 
 .checkbox-container {

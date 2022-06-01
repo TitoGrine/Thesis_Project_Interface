@@ -1,13 +1,26 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import LinkCard from "./LinkCard"
 import { LinkInfo } from "../types/ProfileResult"
 import { useLocation, useParams, Navigate } from "react-router-dom"
+import { Formik, Field, Form, FormikHelpers } from "formik"
+import {
+	LinkQueryForm,
+	LinkQueryFields,
+	fieldOptions,
+	LinkQueryRequest,
+} from "../types/LinkQuery"
+import MultiSelect from "./MultiSelect"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+	faMagnifyingGlass,
+	faRotateLeft,
+} from "@fortawesome/free-solid-svg-icons"
 
 function LinksPage() {
 	const { search_id, profile_id } = useParams()
 	const [links, setLinks] = useState<Array<LinkInfo>>()
 
-	useEffect(() => {
+	const getAllLinks = useCallback(() => {
 		fetch(
 			`${process.env.REACT_APP_API_HOST}/searches/${search_id}/profiles/${profile_id}`
 		)
@@ -24,6 +37,99 @@ function LinksPage() {
 			.catch(() => setLinks([]))
 	}, [search_id, profile_id])
 
+	useEffect(() => {
+		getAllLinks()
+	}, [getAllLinks])
+
+	const validateSearch = (values: LinkQueryForm) => {
+		const { query } = values
+
+		if (query.length === 0)
+			return {
+				query: "A query must be provided.",
+			}
+
+		return {}
+	}
+
+	const getLinkQueryForm = () => {
+		return (
+			<div>
+				<Formik
+					initialValues={{
+						query: "",
+						fields: [] as Array<LinkQueryFields>,
+					}}
+					validate={validateSearch}
+					onSubmit={(
+						values: LinkQueryForm,
+						{ setSubmitting, resetForm }: FormikHelpers<LinkQueryForm>
+					) => {
+						const { query, fields } = values
+						let params: LinkQueryRequest = {
+							q: query,
+						}
+
+						if (fields.length > 0) params["fields"] = fields.join(",")
+
+						fetch(
+							`${
+								process.env.REACT_APP_API_HOST
+							}/searches/${search_id}/profiles/${profile_id}?${new URLSearchParams(
+								params
+							)}`
+						)
+							.then((response) => {
+								if (response.status >= 400) {
+									throw new Error()
+								}
+
+								return response.json()
+							})
+							.then((data) => setLinks(data?.links))
+							.catch(() => setLinks([]))
+					}}
+				>
+					{({ submitForm, resetForm }) => (
+						<Form className="query-form">
+							<button
+								type="button"
+								onClick={() => {
+									resetForm()
+									getAllLinks()
+								}}
+							>
+								<FontAwesomeIcon icon={faRotateLeft} />
+							</button>
+							<label>
+								<Field
+									id="query"
+									name="query"
+									placeHolder="Filter by keywords..."
+									onKeyPress={(event: any) => {
+										if (event.key === "Enter") {
+											submitForm()
+										}
+									}}
+								/>
+								<button type="submit">
+									<FontAwesomeIcon icon={faMagnifyingGlass} />
+								</button>
+							</label>
+							<Field
+								className="custom-select"
+								name="fields"
+								options={fieldOptions}
+								component={MultiSelect}
+								placeholder="Select fields..."
+							/>
+						</Form>
+					)}
+				</Formik>
+			</div>
+		)
+	}
+
 	const getLinkCards = () => {
 		if (links?.length === 0)
 			return (
@@ -38,7 +144,12 @@ function LinksPage() {
 			.map((link) => <LinkCard key={link.original_link} {...link} />)
 	}
 
-	return <div className="links">{links && getLinkCards()}</div>
+	return (
+		<>
+			{getLinkQueryForm()}
+			<div className="links">{links && getLinkCards()}</div>
+		</>
+	)
 }
 
 export default LinksPage
