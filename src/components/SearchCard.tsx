@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { SearchConfig as SearchConfigType } from "../types/SearchConfig"
 import SearchConfig from "./SearchConfig"
-import { formatDate } from "../utils/date"
+import { formatDate, formatDuration } from "../utils/date"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faMagnifyingGlass,
@@ -12,7 +12,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 
 function SearchCard({ id, config }: SearchConfigType) {
-	const { searching, discovery, extraction, timestamp, state, error } = config
+	const {
+		searching,
+		discovery,
+		extraction,
+		timestamp,
+		state,
+		error,
+		duration,
+	} = config
 	const [showConfig, setShowConfig] = useState<Boolean>(false)
 
 	const openConfig = () => {
@@ -69,6 +77,9 @@ function SearchCard({ id, config }: SearchConfigType) {
 					<p>
 						Date:{" "}
 						<strong>{formatDate(timestamp, true, "Europe/Lisbon")}</strong>
+					</p>
+					<p>
+						Duration: <strong>{formatDuration(duration)}</strong>
 					</p>
 					<section className="options">
 						{getCardOptions()}

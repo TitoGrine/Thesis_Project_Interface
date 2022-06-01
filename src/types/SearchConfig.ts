@@ -52,6 +52,7 @@ export type ConfigurationHistory = Configuration & {
 	timestamp: string
 	state?: "running" | "error" | "completed"
 	error?: string
+	duration?: number
 }
 
 export type SearchConfig = {

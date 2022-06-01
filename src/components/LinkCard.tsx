@@ -29,7 +29,7 @@ function LinkCard(props: LinkInfoType) {
 						Score: <strong>{score}</strong>
 					</p>
 					<section className="options">
-						<button onClick={openInfo}>
+						<button className="icon-button" onClick={openInfo}>
 							<FontAwesomeIcon icon={faFileLines} />
 						</button>
 					</section>

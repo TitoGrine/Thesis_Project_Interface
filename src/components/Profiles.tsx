@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import { ProfileResult } from "../types/ProfileResult"
-import { useLocation, useParams, Navigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import ProfileCard from "./ProfileCard"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 import {
@@ -10,23 +10,25 @@ import {
 	ProfileQueryRequest,
 } from "../types/ProfileQuery"
 import MultiSelect from "./MultiSelect"
+import LoadingSpinner from "./LoadingSpinner"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faMagnifyingGlass,
 	faRotateLeft,
 } from "@fortawesome/free-solid-svg-icons"
 
-type props = {
-	search_id: string
-}
-
 function SearchPage() {
 	const { search_id } = useParams()
+	const [loading, setLoading] = useState<Boolean>(true)
 	const [profiles, setProfiles] = useState<Array<ProfileResult>>()
 
 	const getAllProfiles = useCallback(() => {
+		setLoading(true)
+
 		fetch(`${process.env.REACT_APP_API_HOST}/searches/${search_id}`)
 			.then((response) => {
+				setLoading(false)
+
 				if (response.status >= 400) {
 					throw new Error()
 				}
@@ -72,12 +74,16 @@ function SearchPage() {
 
 						if (fields.length > 0) params["fields"] = fields.join(",")
 
+						setLoading(true)
+
 						fetch(
 							`${
 								process.env.REACT_APP_API_HOST
 							}/searches/${search_id}?${new URLSearchParams(params)}`
 						)
 							.then((response) => {
+								setLoading(false)
+
 								if (response.status >= 400) {
 									throw new Error()
 								}
@@ -141,7 +147,10 @@ function SearchPage() {
 	return (
 		<>
 			{getProfileQueryForm()}
-			<div className="profiles">{profiles && getProfileCards()}</div>
+			<div className="profiles">
+				{!loading && profiles && getProfileCards()}
+				{loading && <LoadingSpinner />}
+			</div>
 		</>
 	)
 }

@@ -22,3 +22,9 @@ export const getTodayDate = () => {
 
 	return `${dateArray[0]}:${Math.min(Number(dateArray[1]) + 5, 59)}`
 }
+
+export const formatDuration = (seconds?: number): string => {
+	return seconds
+		? new Date(seconds * 1000).toISOString().substring(11, 19)
+		: "-"
+}

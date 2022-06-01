@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
 import { SearchConfig } from "../types/SearchConfig"
+import LoadingSpinner from "./LoadingSpinner"
 import SearchCard from "./SearchCard"
 
 function Searches() {
+	const [loading, setLoading] = useState<Boolean>(true)
 	const [searches, setSearches] = useState<Array<SearchConfig>>()
 
 	useEffect(() => {
@@ -10,6 +12,8 @@ function Searches() {
 			cache: "no-cache",
 		})
 			.then((response) => {
+				setLoading(false)
+
 				if (response.status >= 400) {
 					throw new Error()
 				}
@@ -34,7 +38,12 @@ function Searches() {
 			.map(({ id, config }) => <SearchCard key={id} id={id} config={config} />)
 	}
 
-	return <div className="searches">{searches && getSearchCards()}</div>
+	return (
+		<div className="searches">
+			{!loading && searches && getSearchCards()}
+			{loading && <LoadingSpinner />}
+		</div>
+	)
 }
 
 export default Searches

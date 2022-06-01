@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { ProfileResult as ProfileResultType } from "../types/ProfileResult"
-import { formatDate } from "../utils/date"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFileLines } from "@fortawesome/free-solid-svg-icons"
 import ProfileResult from "./ProfileResult"
@@ -37,7 +36,7 @@ function SearchCard(props: ProfileResultType) {
 						</strong>
 					</p>
 					<section className="options">
-						<button onClick={openResultModal}>
+						<button className="icon-button" onClick={openResultModal}>
 							<FontAwesomeIcon icon={faFileLines} />
 						</button>
 					</section>

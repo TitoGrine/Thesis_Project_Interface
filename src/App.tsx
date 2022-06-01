@@ -1,11 +1,12 @@
 import "./styles/form.scss"
 import "./styles/pages.scss"
 import "./styles/cards.scss"
+import "./styles/animations.scss"
 import "./styles/modal.scss"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import Searches from "./components/Searches"
-import LinksPage from "./components/LinksPage"
-import SearchPage from "./components/SearchPage"
+import LinksPage from "./components/Links"
+import SearchPage from "./components/Profiles"
 import SearchForm from "./components/SearchForm"
 import {
 	BrowserRouter as Router,

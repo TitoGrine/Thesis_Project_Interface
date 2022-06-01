@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import LinkCard from "./LinkCard"
 import { LinkInfo } from "../types/ProfileResult"
-import { useLocation, useParams, Navigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Formik, Field, Form, FormikHelpers } from "formik"
 import {
 	LinkQueryForm,
@@ -10,6 +10,7 @@ import {
 	LinkQueryRequest,
 } from "../types/LinkQuery"
 import MultiSelect from "./MultiSelect"
+import LoadingSpinner from "./LoadingSpinner"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faMagnifyingGlass,
@@ -18,13 +19,18 @@ import {
 
 function LinksPage() {
 	const { search_id, profile_id } = useParams()
+	const [loading, setLoading] = useState<Boolean>(true)
 	const [links, setLinks] = useState<Array<LinkInfo>>()
 
 	const getAllLinks = useCallback(() => {
+		setLoading(true)
+
 		fetch(
 			`${process.env.REACT_APP_API_HOST}/searches/${search_id}/profiles/${profile_id}`
 		)
 			.then((response) => {
+				setLoading(false)
+
 				if (response.status >= 400) {
 					throw new Error()
 				}
@@ -72,6 +78,8 @@ function LinksPage() {
 
 						if (fields.length > 0) params["fields"] = fields.join(",")
 
+						setLoading(true)
+
 						fetch(
 							`${
 								process.env.REACT_APP_API_HOST
@@ -80,6 +88,8 @@ function LinksPage() {
 							)}`
 						)
 							.then((response) => {
+								setLoading(false)
+
 								if (response.status >= 400) {
 									throw new Error()
 								}
@@ -147,7 +157,10 @@ function LinksPage() {
 	return (
 		<>
 			{getLinkQueryForm()}
-			<div className="links">{links && getLinkCards()}</div>
+			<div className="links">
+				{!loading && links && getLinkCards()}
+				{loading && <LoadingSpinner />}
+			</div>
 		</>
 	)
 }

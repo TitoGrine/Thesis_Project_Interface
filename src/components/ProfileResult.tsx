@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import { getWikiPage } from "../utils/wiki"
+import LoadingSpinner from "./LoadingSpinner"
 
 type props = {
 	result: ProfileResultType
@@ -12,6 +13,7 @@ type props = {
 
 function ProfileResult({ result, close }: props) {
 	const { username, entities } = result
+	const [loadingEntities, setLoadingEntities] = useState<Boolean>(true)
 	const [profileEntities, setProfileEntities] = useState<
 		Array<string | JSX.Element>
 	>([])
@@ -28,6 +30,8 @@ function ProfileResult({ result, close }: props) {
 				</li>
 			))
 		)
+
+		setLoadingEntities(false)
 	}, [entities])
 
 	useEffect(() => {
@@ -45,6 +49,25 @@ function ProfileResult({ result, close }: props) {
 		} catch (e) {
 			return entity
 		}
+	}
+
+	const getEntitiesInformation = () => {
+		return loadingEntities ? (
+			<p>
+				<LoadingSpinner className="inside-loading" />
+			</p>
+		) : (
+			<p>
+				Tweet's Entities:{" "}
+				{entities.length > 0 ? (
+					<div>
+						<ul className="double-list">{profileEntities}</ul>
+					</div>
+				) : (
+					<strong>-</strong>
+				)}
+			</p>
+		)
 	}
 
 	const getPanelInformation = () => {
@@ -111,16 +134,7 @@ function ProfileResult({ result, close }: props) {
 						<strong>-</strong>
 					)}
 				</p>
-				<p>
-					Tweet's Entities:{" "}
-					{entities.length > 0 ? (
-						<div>
-							<ul className="double-list">{profileEntities}</ul>
-						</div>
-					) : (
-						<strong>-</strong>
-					)}
-				</p>
+				{getEntitiesInformation()}
 			</>
 		)
 	}

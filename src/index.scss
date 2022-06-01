@@ -90,6 +90,24 @@ button:not([class^="icon-"]) {
   }
 }
 
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: $primaryColor;
+
+  &.inside-loading {
+    color: $background;
+    padding-top: 15px;
+    font-size: 30px;
+    position: relative;
+    text-align: center;
+    overflow-y: hidden !important;
+  }
+}
+
 .tooltip {
   display:inline-block;
   position:relative;
@@ -200,7 +218,7 @@ button:not([class^="icon-"]) {
 	/* On mouse-over, add a grey background color */
 	&:hover input ~ .checkmark {
 		border: 2px solid $primaryColor;
-    border-radius: $radius / 2;
+    border-radius: calc($radius / 2);
 	}
 
 	/* Hide the browser's default checkbox */
@@ -227,7 +245,7 @@ button:not([class^="icon-"]) {
 		top: 0;
 		left: 0;
 		background-color: $background;
-		border-radius: $radius / 2;
+		border-radius: calc($radius / 2);
 		border: 2px solid transparent;
     padding: 0;
     width: 18px;

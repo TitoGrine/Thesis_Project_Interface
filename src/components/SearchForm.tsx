@@ -189,7 +189,7 @@ function SearchForm() {
 					validate={validateForm}
 					onSubmit={(
 						values: FormConfiguration,
-						{ setSubmitting, resetForm }: FormikHelpers<FormConfiguration>
+						{ resetForm }: FormikHelpers<FormConfiguration>
 					) => {
 						const configuration = convertValues(values)
 
@@ -205,7 +205,7 @@ function SearchForm() {
 									resetForm({ values: initialValues })
 									alert(`Error ${response.status} submitting query.`)
 								} else {
-									navigate("searches")
+									setTimeout(() => navigate("searches"), 500)
 								}
 							})
 							.catch((error) => {
