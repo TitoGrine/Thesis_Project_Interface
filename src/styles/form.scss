@@ -140,3 +140,144 @@
         }
     }
 }
+
+.query-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 30px auto 0 auto;
+    justify-content: center;
+    padding: 0;
+    gap: 15px;
+    min-height: 40px;
+    max-height: 40px;
+
+    label {
+        position: relative;
+        min-height: 40px;
+        max-height: 40px;
+        
+        input {
+            width: 400px;
+            min-height: 40px;
+            max-height: 40px;
+            background-color: $text;
+            border: none;
+            border-radius: calc(10*$radius);
+            padding: 10px 15px;
+            padding-right: 40px;
+            box-sizing: border-box;
+            font-size: 15px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+        
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 5px;
+            padding: 0;
+            margin: 0;
+            width: 30px;
+            background-color: transparent;
+            color: $background;
+
+            &:hover {
+                background-color: transparent;
+                color: $background;
+            }
+            
+            a {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+    }
+}
+
+.multi-select {
+    background-color: transparent;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 40px;
+    max-height: 40px;
+    border-radius: calc($radius / 2);
+    box-sizing: border-box;
+
+    div {
+        background-color: $text;
+        color: $background;
+        font-size: 15px;
+
+        
+        &[class*="-Input"] {
+            background-color: transparent;
+            overflow-x: auto;
+            
+            input {
+                outline: none;
+            }
+            
+        }
+        
+
+        &[class*="-IndicatorsContainer"] {
+            span {
+                background-color: $background;
+            }
+
+            div:hover {
+                color: $background;
+                cursor: pointer;
+            }
+        }
+
+        .multi-select__multi-value, .multi-select__multi-value__label {
+            background-color: $background;
+            color: $text;
+    
+            &__label {
+                background-color: $background;
+                color: $text;
+                margin-right: 5px;
+            }
+    
+            &__remove {
+                background-color: $background;
+                color: $text;
+                cursor: pointer;
+    
+                &:hover {
+                    color: $text;
+                    background-color: $alertColor;
+                }
+            }
+        }
+    
+        .multi-select__value-container {
+            box-sizing: border-box;
+            overflow: auto;
+            max-height: 40px;
+        }
+    
+        .multi-select__menu-list {
+            padding: 5px;
+            border-radius: calc($radius / 2);
+        }
+    
+        .multi-select__option {
+            border-radius: calc($radius / 2);
+            cursor: pointer;
+    
+            &:hover {
+                background-color: $background;
+                color: $text;
+            }
+        }
+    }
+    
+}

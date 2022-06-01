@@ -19,7 +19,7 @@ function LinksPage() {
 				return response.json()
 			})
 			.then((data) => {
-				setLinks(data?.profile.processed_links)
+				setLinks(data?.links)
 			})
 			.catch(() => setLinks([]))
 	}, [search_id, profile_id])

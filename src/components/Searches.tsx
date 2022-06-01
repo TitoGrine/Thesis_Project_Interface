@@ -37,6 +37,4 @@ function Searches() {
 	return <div className="searches">{searches && getSearchCards()}</div>
 }
 
-Searches.propTypes = {}
-
 export default Searches
