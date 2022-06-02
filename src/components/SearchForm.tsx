@@ -121,30 +121,35 @@ function SearchForm() {
 				.split(",")
 				.map((val) => val.trim())
 				.filter((val) => val.length > 0)
+		else searchConfig.keywords = []
 
 		if (searching.hashtags.length > 0)
 			searchConfig.hashtags = searching.hashtags
 				.split(",")
 				.map((val) => val.trim())
 				.filter((val) => val.length > 0)
+		else searchConfig.hashtags = []
 
 		if (searching.exclude && searching.exclude.length > 0)
 			searchConfig.exclude = searching.exclude
 				.split(",")
 				.map((val) => val.trim())
 				.filter((val) => val.length > 0)
+		else searchConfig.exclude = []
 
 		if (searching.countries && searching.countries.length > 0)
 			searchConfig.countries = searching.countries
 				.split(",")
 				.map((val) => val.trim())
 				.filter((code) => countries.isValid(code))
+		else searchConfig.countries = []
 
 		if (searching.languages && searching.languages.length > 0)
 			searchConfig.languages = searching.languages
 				.split(",")
 				.map((val) => val.trim())
 				.filter((code) => tags.check(code))
+		else searchConfig.languages = []
 
 		if (searching.start_time)
 			searchConfig.start_time = searching.start_time + ":00Z"
