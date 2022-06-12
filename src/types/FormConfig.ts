@@ -22,7 +22,7 @@ export class Entities {
 export type EntitiesArray = Array<keyof Entities>
 
 export type Searching = {
-	users: number
+	profiles: number
 	keywords: string
 	hashtags: string
 	exclude?: string
@@ -34,11 +34,11 @@ export type Searching = {
 
 export type Discovery = {
 	keywords: string
-	tweets_per_user: number
+	tweets_per_profile: number
 }
 
 export type Extraction = {
-	links_per_user: number
+	links_per_profile: number
 	entities: Entities
 }
 

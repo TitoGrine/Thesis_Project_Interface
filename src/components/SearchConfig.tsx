@@ -64,7 +64,7 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 
 	const getSearchingPanel = () => {
 		const {
-			users,
+			profiles,
 			keywords,
 			hashtags,
 			exclude,
@@ -77,7 +77,7 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 		return (
 			<>
 				<p>
-					Number of users: <strong>{users}</strong>
+					Number of Profiles: <strong>{profiles}</strong>
 				</p>
 				<p>
 					Keywords: <strong>{keywords.join(", ")}</strong>
@@ -108,7 +108,7 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 	}
 
 	const getDiscoveryPanel = () => {
-		const { keywords, tweets_per_user } = discovery
+		const { keywords, tweets_per_profile } = discovery
 
 		return (
 			<>
@@ -116,14 +116,14 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 					Keywords: <strong>{keywords.join(", ")}</strong>
 				</p>
 				<p>
-					Tweets per User: <strong>{tweets_per_user}</strong>
+					Tweets per Profile: <strong>{tweets_per_profile}</strong>
 				</p>
 			</>
 		)
 	}
 
 	const getExtractionPanel = () => {
-		const { links_per_user, entities } = extraction
+		const { links_per_profile, entities } = extraction
 
 		const entityKeys = Object.keys(entities) as (keyof Entities)[]
 		const selectedEntities = entityKeys
@@ -133,7 +133,7 @@ function SearchConfig({ id, searching, discovery, extraction, close }: props) {
 		return (
 			<>
 				<p>
-					Links per User: <strong>{links_per_user}</strong>
+					Links per Profile: <strong>{links_per_profile}</strong>
 				</p>
 				<p>
 					Selected Entities: <strong>{selectedEntities}</strong>

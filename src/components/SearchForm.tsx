@@ -33,16 +33,16 @@ function SearchForm() {
 
 	const initialValues = startConfig || {
 		searching: {
-			users: 100,
+			profiles: 100,
 			keywords: "",
 			hashtags: "",
 		},
 		discovery: {
 			keywords: "",
-			tweets_per_user: 1500,
+			tweets_per_profile: 1500,
 		},
 		extraction: {
-			links_per_user: 20,
+			links_per_profile: 20,
 			entities: {},
 		},
 	}
@@ -224,11 +224,11 @@ function SearchForm() {
 							<section>
 								<h2>Searching Parameters</h2>
 								<span>
-									<label htmlFor="searching.users">
-										Number of Users:
+									<label htmlFor="searching.profiles">
+										Number of Profiles:
 										<Field
-											id="searching.users"
-											name="searching.users"
+											id="searching.profiles"
+											name="searching.profiles"
 											type="number"
 											min={1}
 											max={10000}
@@ -337,11 +337,11 @@ function SearchForm() {
 							<section>
 								<h2>Discovery Parameters</h2>
 								<span>
-									<label htmlFor="discovery.tweets_per_user">
-										Tweets per User:
+									<label htmlFor="discovery.tweets_per_profile">
+										Tweets per Profile:
 										<Field
-											id="discovery.tweets_per_user"
-											name="discovery.tweets_per_user"
+											id="discovery.tweets_per_profile"
+											name="discovery.tweets_per_profile"
 											type="number"
 											min={1}
 											max={5000}
@@ -363,11 +363,11 @@ function SearchForm() {
 							<section>
 								<h2>Extraction Parameters</h2>
 								<span>
-									<label htmlFor="extraction.links_per_user">
-										Links per User:
+									<label htmlFor="extraction.links_per_profile">
+										Links per Profile:
 										<Field
-											id="extraction.links_per_user"
-											name="extraction.links_per_user"
+											id="extraction.links_per_profile"
+											name="extraction.links_per_profile"
 											type="number"
 											min={1}
 											max={10000}

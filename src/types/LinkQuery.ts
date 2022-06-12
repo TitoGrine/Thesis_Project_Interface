@@ -1,5 +1,5 @@
 export type LinkQueryFields =
-	| "original_link"
+	| "internal_links"
 	| "name"
 	| "title"
 	| "description"
@@ -19,8 +19,8 @@ export type LinkQueryRequest = {
 
 export const fieldOptions = [
 	{
-		label: "Original Link",
-		value: "original_link",
+		label: "Internal Links",
+		value: "internal_links",
 	},
 	{
 		label: "Name",
