@@ -151,10 +151,13 @@ function SearchForm() {
 				.filter((code) => tags.check(code))
 		else searchConfig.languages = []
 
-		if (searching.start_time)
+		if (searching.start_time && searching.start_time.length > 0)
 			searchConfig.start_time = searching.start_time + ":00Z"
+		else searchConfig.start_time = undefined
 
-		if (searching.end_time) searchConfig.end_time = searching.end_time + ":00Z"
+		if (searching.end_time && searching.end_time.length > 0)
+			searchConfig.end_time = searching.end_time + ":00Z"
+		else searchConfig.end_time = undefined
 	}
 
 	const convertValues = (config: FormConfiguration): Configuration => {

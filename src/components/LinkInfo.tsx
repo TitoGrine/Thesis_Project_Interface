@@ -27,6 +27,8 @@ function LinkInfo({ info, close }: props) {
 	} = info
 
 	const getEntitiesPanel = () => {
+		if (!entities) return <></>
+
 		const entityKeys = (Object.keys(entities) as (keyof Entities)[]).filter(
 			(entity) => !!entities[entity]
 		)

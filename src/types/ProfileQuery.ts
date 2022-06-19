@@ -17,7 +17,7 @@ export type ProfileQueryRequest = {
 
 export const fieldOptions = [
 	{
-		label: "Profilename",
+		label: "Username",
 		value: "username",
 	},
 	{

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFileLines, faTree } from "@fortawesome/free-solid-svg-icons"
 
 function LinkCard(props: LinkInfoType) {
-	const { original_link, score, is_link_tree } = props
+	const { original_link, score, is_link_tree, external_links, images } = props
 	const [showLinkInfo, setShowLinkInfo] = useState<Boolean>(false)
 
 	const openInfo = () => {
@@ -27,6 +27,12 @@ function LinkCard(props: LinkInfoType) {
 				<div className="link-card-content">
 					<p>
 						Score: <strong>{score}</strong>
+					</p>
+					<p>
+						External Links: <strong>{external_links.length}</strong>
+					</p>
+					<p>
+						Images: <strong>{images.length}</strong>
 					</p>
 					<section className="options">
 						<button className="icon-button" onClick={openInfo}>
